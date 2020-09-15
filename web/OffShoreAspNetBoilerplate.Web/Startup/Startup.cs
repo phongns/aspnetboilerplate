@@ -36,6 +36,7 @@ namespace OffShoreAspNetBoilerplate.Web.Startup
             else
             {
                 app.UseExceptionHandler("/Error");
+                //test commit
             }
 
             app.UseStaticFiles();
