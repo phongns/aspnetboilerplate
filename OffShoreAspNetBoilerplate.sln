@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp.Zero.Common", "src\Abp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp.ZeroCore", "src\Abp.ZeroCore\Abp.ZeroCore.csproj", "{3AAA9299-96E9-4620-9492-1CF4CB497451}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp.AspNetCore", "src\Abp.AspNetCore\Abp.AspNetCore.csproj", "{30B993F4-C55F-45E0-8C14-7E0F623F86B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{3AAA9299-96E9-4620-9492-1CF4CB497451}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AAA9299-96E9-4620-9492-1CF4CB497451}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AAA9299-96E9-4620-9492-1CF4CB497451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30B993F4-C55F-45E0-8C14-7E0F623F86B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30B993F4-C55F-45E0-8C14-7E0F623F86B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30B993F4-C55F-45E0-8C14-7E0F623F86B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30B993F4-C55F-45E0-8C14-7E0F623F86B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{7522628F-6D5C-46CB-A1E0-70A9CB1E7DDC} = {52ADA677-BE79-480B-9F91-C7722AE86067}
 		{37E344A9-077F-4C12-A8B3-A59C347DB8CB} = {52ADA677-BE79-480B-9F91-C7722AE86067}
 		{3AAA9299-96E9-4620-9492-1CF4CB497451} = {52ADA677-BE79-480B-9F91-C7722AE86067}
+		{30B993F4-C55F-45E0-8C14-7E0F623F86B8} = {52ADA677-BE79-480B-9F91-C7722AE86067}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FFFC3BF-71BD-4311-964B-4F03B8CFF9C8}
