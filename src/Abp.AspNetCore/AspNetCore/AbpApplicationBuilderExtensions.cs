@@ -1,4 +1,5 @@
 ﻿using System;
+using Abp.AspNetCore.Security;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,10 +25,24 @@ namespace Abp.AspNetCore
             if (options.UseCastleLoggerFactory)
             {
                 //app.UseCastleLoggerFactory();
-                //Guid.NewGuid()
             }
 
+            //InitializeAbp(app);
+
+            if (options.UseSecurityHeaders)
+            {
+                app.UseAbpSecurityHeaders();
+            }
         }
+
+        //private void AddInterceptorRegistrars()
+        //{
+        //    //ValidationInterceptorRegistrar.Initialize(IocManager);
+        //    //AuditingInterceptorRegistrar.Initialize(IocManager);
+        //    //EntityHistoryInterceptorRegistrar.Initialize(IocManager);
+        //    //UnitOfWorkRegistrar.Initialize(IocManager);
+        //    //AuthorizationInterceptorRegistrar.Initialize(/*IocManager*/);
+        //}
 
         private static void InitializeAbp(IApplicationBuilder app)
         {
@@ -36,6 +51,11 @@ namespace Abp.AspNetCore
 
             var applicationLifetime = app.ApplicationServices.GetService<IHostApplicationLifetime>();
             applicationLifetime.ApplicationStopping.Register(() => abpBootstrapper.Dispose());
+        }
+
+        public static void UseAbpSecurityHeaders(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<AbpSecurityHeadersMiddleware>();
         }
     }
 }

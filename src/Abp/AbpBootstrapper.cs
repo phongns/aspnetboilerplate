@@ -34,6 +34,8 @@ namespace Abp
             //    _logger.Fatal(ex.ToString(), ex);
             //    throw;
             //}
+
+            //AuthorizationInterceptorRegistrar.Initialize(IocManager);
         }
 
         /// <summary>

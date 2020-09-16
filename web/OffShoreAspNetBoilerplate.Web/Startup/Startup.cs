@@ -1,4 +1,5 @@
 using Abp.AspNetCore;
+using Abp.AspNetCore.Mvc.Antiforgery;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,14 +30,13 @@ namespace OffShoreAspNetBoilerplate.Web.Startup
                 options =>
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+                    options.Filters.Add(new AbpAutoValidateAntiforgeryTokenAttribute());
 
                 })
-                .AddRazorRuntimeCompilation()
-                .AddNewtonsoftJson();
+                .AddRazorRuntimeCompilation();
+                //.AddNewtonsoftJson();
 
             AuthConfigurer.Configure(services, _appConfiguration);
-
-            //services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +51,6 @@ namespace OffShoreAspNetBoilerplate.Web.Startup
             else
             {
                 app.UseExceptionHandler("/Error");
-                //test commit
             }
 
             app.UseStaticFiles();
