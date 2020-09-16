@@ -1,3 +1,4 @@
+using System;
 using Abp.AspNetCore;
 using Abp.AspNetCore.Mvc.Antiforgery;
 using Microsoft.AspNetCore.Builder;
@@ -24,7 +25,7 @@ namespace OffShoreAspNetBoilerplate.Web.Startup
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews(
                 options =>
@@ -37,6 +38,13 @@ namespace OffShoreAspNetBoilerplate.Web.Startup
                 //.AddNewtonsoftJson();
 
             AuthConfigurer.Configure(services, _appConfiguration);
+
+            return services.AddAbp<AbpProjectNameWebMvcModule>(
+                //// Configure Log4Net logging
+                //options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
+                //    f => f.UseAbpLog4Net().WithConfig("log4net.config")
+                //)
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
