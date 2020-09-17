@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OffShoreAspNetBoilerplate.Application\OffShoreAspNetBoilerplate.Application.csproj" />
+    <ProjectReference Include="..\OffShoreAspNetBoilerplate.Web.Core\OffShoreAspNetBoilerplate.Web.Core.csproj" />
+  </ItemGroup>
+
+</Project>

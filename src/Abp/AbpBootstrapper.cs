@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Reflection;
 using Abp.Authorization;
 using Abp.Dependency;
+using Abp.Dependency.Installers;
+using Abp.Modules;
+using Castle.MicroKernel.Registration;
 using JetBrains.Annotations;
 
 namespace Abp
@@ -13,10 +17,18 @@ namespace Abp
     public class AbpBootstrapper : IDisposable
     {
         /// <summary>
+        /// Get the startup module of the application which depends on other used modules.
+        /// </summary>
+        public Type StartupModule { get; }
+        /// <summary>
         /// Gets IIocManager object used by this class.
         /// </summary>
         public IIocManager IocManager { get; }
 
+        /// <summary>
+        /// Is this object disposed before?
+        /// </summary>
+        protected bool IsDisposed;
 
         /// <summary>
         /// Creates a new <see cref="AbpBootstrapper"/> instance.
@@ -28,15 +40,17 @@ namespace Abp
             var options = new AbpBootstrapperOptions();
             optionsAction?.Invoke(options);
 
-            //if (!typeof(AbpModule).GetTypeInfo().IsAssignableFrom(startupModule))
-            //{
-            //    throw new ArgumentException($"{nameof(startupModule)} should be derived from {nameof(AbpModule)}.");
-            //}
+            if (!typeof(AbpModule).GetTypeInfo().IsAssignableFrom(startupModule))
+            {
+                throw new ArgumentException($"{nameof(startupModule)} should be derived from {nameof(AbpModule)}.");
+            }
 
             //StartupModule = startupModule;
 
             IocManager = options.IocManager;
             //PlugInSources = options.PlugInSources;
+
+            //_logger = NullLogger.Instance;
 
             if (!options.DisableAllInterceptors)
             {
@@ -50,7 +64,7 @@ namespace Abp
         /// <typeparam name="TStartupModule">Startup module of the application which depends on other used modules. Should be derived from <see cref="AbpModule"/>.</typeparam>
         /// <param name="optionsAction">An action to set options</param>
         public static AbpBootstrapper Create<TStartupModule>([CanBeNull] Action<AbpBootstrapperOptions> optionsAction = null)
-        //where TStartupModule : AbpModule
+            where TStartupModule : AbpModule
         {
             return new AbpBootstrapper(typeof(TStartupModule), optionsAction);
         }
@@ -81,25 +95,33 @@ namespace Abp
         {
             //ResolveLogger();
 
-            //try
-            //{
-            //    RegisterBootstrapper();
-            //    IocManager.IocContainer.Install(new AbpCoreInstaller());
+            try
+            {
+                RegisterBootstrapper();
+                IocManager.IocContainer.Install(new AbpCoreInstaller());
 
-            //    IocManager.Resolve<AbpPlugInManager>().PlugInSources.AddRange(PlugInSources);
-            //    IocManager.Resolve<AbpStartupConfiguration>().Initialize();
+                //    IocManager.Resolve<AbpPlugInManager>().PlugInSources.AddRange(PlugInSources);
+                //    IocManager.Resolve<AbpStartupConfiguration>().Initialize();
 
-            //    _moduleManager = IocManager.Resolve<AbpModuleManager>();
-            //    _moduleManager.Initialize(StartupModule);
-            //    _moduleManager.StartModules();
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.Fatal(ex.ToString(), ex);
-            //    throw;
-            //}
+                //    _moduleManager = IocManager.Resolve<AbpModuleManager>();
+                //    _moduleManager.Initialize(StartupModule);
+                //    _moduleManager.StartModules();
+            }
+            catch (Exception ex)
+            {
+                //    _logger.Fatal(ex.ToString(), ex);
+                throw;
+            }
+        }
 
-            //AuthorizationInterceptorRegistrar.Initialize(IocManager);
+        private void RegisterBootstrapper()
+        {
+            if (!IocManager.IsRegistered<AbpBootstrapper>())
+            {
+                IocManager.IocContainer.Register(
+                    Component.For<AbpBootstrapper>().Instance(this)
+                    );
+            }
         }
 
         /// <summary>
@@ -107,12 +129,12 @@ namespace Abp
         /// </summary>
         public virtual void Dispose()
         {
-            //if (IsDisposed)
-            //{
-            //    return;
-            //}
+            if (IsDisposed)
+            {
+                return;
+            }
 
-            //IsDisposed = true;
+            IsDisposed = true;
 
             //_moduleManager?.ShutdownModules();
         }

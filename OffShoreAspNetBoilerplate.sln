@@ -12,25 +12,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{52ADA677-BE79-480B-9F91-C7722AE86067}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp", "src\Abp\Abp.csproj", "{ACA6D9B3-0E2A-4928-A671-C788F3112378}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp", "src\Abp\Abp.csproj", "{ACA6D9B3-0E2A-4928-A671-C788F3112378}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{3189576F-1612-439E-8132-FCF19D7744BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OffShoreAspNetBoilerplate.Web", "web\OffShoreAspNetBoilerplate.Web\OffShoreAspNetBoilerplate.Web.csproj", "{789B618D-59F5-4306-9699-C23B7E844292}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OffShoreAspNetBoilerplate.Web", "web\OffShoreAspNetBoilerplate.Web\OffShoreAspNetBoilerplate.Web.csproj", "{789B618D-59F5-4306-9699-C23B7E844292}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OffShoreAspNetBoilerplate.Web.Core", "web\OffShoreAspNetBoilerplate.Web.Core\OffShoreAspNetBoilerplate.Web.Core.csproj", "{359E38D2-3B7F-4FCB-A5B3-27217D0B013F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OffShoreAspNetBoilerplate.Web.Core", "web\OffShoreAspNetBoilerplate.Web.Core\OffShoreAspNetBoilerplate.Web.Core.csproj", "{359E38D2-3B7F-4FCB-A5B3-27217D0B013F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OffShoreAspNetBoilerplate.Core", "web\OffShoreAspNetBoilerplate.Core\OffShoreAspNetBoilerplate.Core.csproj", "{6B9F4F6F-C2CD-496D-9B11-EE68BEE3189A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OffShoreAspNetBoilerplate.Core", "web\OffShoreAspNetBoilerplate.Core\OffShoreAspNetBoilerplate.Core.csproj", "{6B9F4F6F-C2CD-496D-9B11-EE68BEE3189A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp.EntityFrameworkCore", "src\Abp.EntityFrameworkCore\Abp.EntityFrameworkCore.csproj", "{E62947B8-A1FB-4CBA-A087-3A5F883F88AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.EntityFrameworkCore", "src\Abp.EntityFrameworkCore\Abp.EntityFrameworkCore.csproj", "{E62947B8-A1FB-4CBA-A087-3A5F883F88AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp.ZeroCore.EntityFrameworkCore", "src\Abp.ZeroCore.EntityFrameworkCore\Abp.ZeroCore.EntityFrameworkCore.csproj", "{7522628F-6D5C-46CB-A1E0-70A9CB1E7DDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.ZeroCore.EntityFrameworkCore", "src\Abp.ZeroCore.EntityFrameworkCore\Abp.ZeroCore.EntityFrameworkCore.csproj", "{7522628F-6D5C-46CB-A1E0-70A9CB1E7DDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp.Zero.Common", "src\Abp.Zero.Common\Abp.Zero.Common.csproj", "{37E344A9-077F-4C12-A8B3-A59C347DB8CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.Zero.Common", "src\Abp.Zero.Common\Abp.Zero.Common.csproj", "{37E344A9-077F-4C12-A8B3-A59C347DB8CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp.ZeroCore", "src\Abp.ZeroCore\Abp.ZeroCore.csproj", "{3AAA9299-96E9-4620-9492-1CF4CB497451}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.ZeroCore", "src\Abp.ZeroCore\Abp.ZeroCore.csproj", "{3AAA9299-96E9-4620-9492-1CF4CB497451}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abp.AspNetCore", "src\Abp.AspNetCore\Abp.AspNetCore.csproj", "{30B993F4-C55F-45E0-8C14-7E0F623F86B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore", "src\Abp.AspNetCore\Abp.AspNetCore.csproj", "{30B993F4-C55F-45E0-8C14-7E0F623F86B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OffShoreAspNetBoilerplate.Web.Host", "web\OffShoreAspNetBoilerplate.Web.Host\OffShoreAspNetBoilerplate.Web.Host.csproj", "{51851C66-82B2-4D18-BBCF-BD5418AF5B46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OffShoreAspNetBoilerplate.Application", "web\OffShoreAspNetBoilerplate.Application\OffShoreAspNetBoilerplate.Application.csproj", "{5A53DD53-1F58-48F2-95F9-46A9A60BFA2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +78,14 @@ Global
 		{30B993F4-C55F-45E0-8C14-7E0F623F86B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30B993F4-C55F-45E0-8C14-7E0F623F86B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30B993F4-C55F-45E0-8C14-7E0F623F86B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51851C66-82B2-4D18-BBCF-BD5418AF5B46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51851C66-82B2-4D18-BBCF-BD5418AF5B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51851C66-82B2-4D18-BBCF-BD5418AF5B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51851C66-82B2-4D18-BBCF-BD5418AF5B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A53DD53-1F58-48F2-95F9-46A9A60BFA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A53DD53-1F58-48F2-95F9-46A9A60BFA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A53DD53-1F58-48F2-95F9-46A9A60BFA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A53DD53-1F58-48F2-95F9-46A9A60BFA2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +100,8 @@ Global
 		{37E344A9-077F-4C12-A8B3-A59C347DB8CB} = {52ADA677-BE79-480B-9F91-C7722AE86067}
 		{3AAA9299-96E9-4620-9492-1CF4CB497451} = {52ADA677-BE79-480B-9F91-C7722AE86067}
 		{30B993F4-C55F-45E0-8C14-7E0F623F86B8} = {52ADA677-BE79-480B-9F91-C7722AE86067}
+		{51851C66-82B2-4D18-BBCF-BD5418AF5B46} = {3189576F-1612-439E-8132-FCF19D7744BE}
+		{5A53DD53-1F58-48F2-95F9-46A9A60BFA2E} = {3189576F-1612-439E-8132-FCF19D7744BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8FFFC3BF-71BD-4311-964B-4F03B8CFF9C8}

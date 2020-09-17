@@ -2,10 +2,12 @@
 using Abp.Reflection.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using OffShoreAspNetBoilerplate.Web.Core;
 using OffShoreAspNetBoilerplate.Web.Core.Configuration;
 
 namespace OffShoreAspNetBoilerplate.Web.Startup
 {
+    [DependsOn(typeof(AbpProjectNameWebCoreModule))]
     public class AbpProjectNameWebMvcModule : AbpModule
     {
         private readonly IWebHostEnvironment _env;

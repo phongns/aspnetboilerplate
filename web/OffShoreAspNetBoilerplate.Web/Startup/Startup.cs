@@ -34,8 +34,8 @@ namespace OffShoreAspNetBoilerplate.Web.Startup
                     options.Filters.Add(new AbpAutoValidateAntiforgeryTokenAttribute());
 
                 })
-                .AddRazorRuntimeCompilation();
-                //.AddNewtonsoftJson();
+                .AddRazorRuntimeCompilation()
+                .AddNewtonsoftJson();
 
             AuthConfigurer.Configure(services, _appConfiguration);
 
@@ -67,7 +67,7 @@ namespace OffShoreAspNetBoilerplate.Web.Startup
 
             app.UseAuthentication();
 
-            //app.UseJwtTokenMiddleware();
+            app.UseJwtTokenMiddleware();
 
             app.UseAuthorization();
 

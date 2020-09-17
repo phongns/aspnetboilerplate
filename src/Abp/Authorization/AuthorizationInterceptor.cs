@@ -10,7 +10,7 @@ namespace Abp.Authorization
     /// <summary>
     /// This class is used to intercept methods to make authorization if the method defined <see cref="AbpAuthorizeAttribute"/>.
     /// </summary>
-    public class AuthorizationInterceptor : AbpInterceptorBase//, ITransientDependency
+    public class AuthorizationInterceptor : AbpInterceptorBase, ITransientDependency
     {
         //private readonly IAuthorizationHelper _authorizationHelper;
 

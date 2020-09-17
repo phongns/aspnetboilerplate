@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Abp.Authorization
 {
@@ -9,7 +7,7 @@ namespace Abp.Authorization
     /// to make that method usable only by authorized users.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
-    public class AbpAuthorizeAttribute : Attribute//, IAbpAuthorizeAttribute
+    public class AbpAuthorizeAttribute : Attribute, IAbpAuthorizeAttribute
     {
         /// <summary>
         /// A list of permissions to authorize.

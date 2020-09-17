@@ -27,22 +27,13 @@ namespace Abp.AspNetCore
                 //app.UseCastleLoggerFactory();
             }
 
-            //InitializeAbp(app);
+            InitializeAbp(app);
 
             if (options.UseSecurityHeaders)
             {
                 app.UseAbpSecurityHeaders();
             }
         }
-
-        //private void AddInterceptorRegistrars()
-        //{
-        //    //ValidationInterceptorRegistrar.Initialize(IocManager);
-        //    //AuditingInterceptorRegistrar.Initialize(IocManager);
-        //    //EntityHistoryInterceptorRegistrar.Initialize(IocManager);
-        //    //UnitOfWorkRegistrar.Initialize(IocManager);
-        //    //AuthorizationInterceptorRegistrar.Initialize(/*IocManager*/);
-        //}
 
         private static void InitializeAbp(IApplicationBuilder app)
         {
