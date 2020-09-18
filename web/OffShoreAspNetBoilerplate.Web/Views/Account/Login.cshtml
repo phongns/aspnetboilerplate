@@ -1,3 +1,37 @@
-﻿<div>
-    Login
-</div>
+﻿@model LoginFormViewModel
+@using OffShoreAspNetBoilerplate.Web.Models.Account
+@{
+}
+
+<form id="LoginForm" asp-action="Login" method="post">
+    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+    <div class="input-group mb-3">
+        <input type="text" name="usernameOrEmailAddress" class="form-control" placeholder="UserNameOrEmail" required autofocus>
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-user"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input type="password" class="form-control" name="Password" autocomplete="password" placeholder="Password" required>
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <div class="icheck-primary">
+                <input type="checkbox" id="RememberMe" name="RememberMe" value="true">
+                <label for="RememberMe">
+                    RememberMe
+                </label>
+            </div>
+        </div>
+        <div class="col-4">
+            <button type="submit" id="LoginButton" class="btn btn-primary btn-block btn-flat">LogIn</button>
+        </div>
+    </div>
+</form>

@@ -15,16 +15,17 @@ namespace Abp.AspNetCore.Mvc.Authorization
         //private readonly IErrorInfoBuilder _errorInfoBuilder;
         //private readonly IEventBus _eventBus;
 
-        //public AbpAuthorizationFilter(
+        public AbpAuthorizationFilter(
         //    IAuthorizationHelper authorizationHelper,
         //    IErrorInfoBuilder errorInfoBuilder,
-        //    IEventBus eventBus)
-        //{
-        //    _authorizationHelper = authorizationHelper;
-        //    _errorInfoBuilder = errorInfoBuilder;
-        //    _eventBus = eventBus;
-        //    Logger = NullLogger.Instance;
-        //}
+        //    IEventBus eventBus
+        )
+        {
+            //    _authorizationHelper = authorizationHelper;
+            //    _errorInfoBuilder = errorInfoBuilder;
+            //    _eventBus = eventBus;
+            //    Logger = NullLogger.Instance;
+        }
 
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
@@ -41,6 +42,7 @@ namespace Abp.AspNetCore.Mvc.Authorization
                 return;
             }
 
+            await Task.Delay(0);
             ////TODO: Avoid using try/catch, use conditional checking
             //try
             //{

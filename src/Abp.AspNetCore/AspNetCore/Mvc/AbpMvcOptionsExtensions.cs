@@ -21,7 +21,7 @@ namespace Abp.AspNetCore.Mvc
 
         private static void AddActionFilters(MvcOptions options)
         {
-            options.Filters.AddService(typeof(AbpAuthorizationFilter));
+            //options.Filters.AddService(typeof(AbpAuthorizationFilter));
             //options.Filters.AddService(typeof(AbpAuditActionFilter));
             //options.Filters.AddService(typeof(AbpValidationActionFilter));
             //options.Filters.AddService(typeof(AbpUowActionFilter));

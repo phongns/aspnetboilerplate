@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AspNetCore\Mvc\AbpMvcOptionsExtensions.cs~RF24849e18.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Abp\Abp.csproj" />
   </ItemGroup>
 

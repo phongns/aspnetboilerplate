@@ -9,6 +9,7 @@ namespace OffShoreAspNetBoilerplate.Core.Identity
         //{
         //    //return services.AddAbpIdentity()
         //    //    .AddDefaultTokenProviders();
+
         //}
     }
 }
