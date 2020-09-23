@@ -20,6 +20,9 @@
   <ItemGroup>
 
 
+    <ProjectReference Include="..\..\src\Abp\Abp.csproj" />
+
+
     <ProjectReference Include="..\OffShoreAspNetBoilerplate.Web.Core\OffShoreAspNetBoilerplate.Web.Core.csproj" />
   </ItemGroup>
 

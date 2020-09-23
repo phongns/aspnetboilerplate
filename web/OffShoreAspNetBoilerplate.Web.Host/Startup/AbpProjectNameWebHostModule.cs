@@ -1,4 +1,5 @@
-﻿using Abp.Modules;
+﻿using System.Web.Http;
+using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +21,12 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
         public override void Initialize()
         {
             IocManager.RegisterAssemblyByConvention(typeof(AbpProjectNameWebHostModule).GetAssembly());
+        }
+
+        public override void PostInitialize()
+        {
+            base.PostInitialize();
+            //GlobalConfiguration.Configuration.MessageHandlers.Add()
         }
     }
 }

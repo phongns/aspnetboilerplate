@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using OffShoreAspNetBoilerplate.Application;
 
 namespace OffShoreAspNetBoilerplate.Web.Host.Startup
 {
@@ -55,19 +57,19 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
          * SignalR can not send authorization header. So, we are getting it from query string as an encrypted text. */
         private static Task QueryStringTokenResolver(MessageReceivedContext context)
         {
-            //if (!context.HttpContext.Request.Path.HasValue ||
-            //    !context.HttpContext.Request.Path.Value.StartsWith("/signalr"))
-            //{
-            //    // We are just looking for signalr clients
-            //    return Task.CompletedTask;
-            //}
+            if (!context.HttpContext.Request.Path.HasValue ||
+                !context.HttpContext.Request.Path.Value.StartsWith("/signalr"))
+            {
+                // We are just looking for signalr clients
+                return Task.CompletedTask;
+            }
 
-            //var qsAuthToken = context.HttpContext.Request.Query["enc_auth_token"].FirstOrDefault();
-            //if (qsAuthToken == null)
-            //{
-            //    // Cookie value does not matches to querystring value
-            //    return Task.CompletedTask;
-            //}
+            var qsAuthToken = context.HttpContext.Request.Query["enc_auth_token"].FirstOrDefault();
+            if (qsAuthToken == null)
+            {
+                // Cookie value does not matches to querystring value
+                return Task.CompletedTask;
+            }
 
             // Set auth token from cookie
             //context.Token = SimpleStringCipher.Instance.Decrypt(qsAuthToken, AppConsts.DefaultPassPhrase);
