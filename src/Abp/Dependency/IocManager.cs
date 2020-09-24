@@ -40,7 +40,6 @@ namespace Abp.Dependency
         /// </summary>
         private readonly List<IConventionalDependencyRegistrar> _conventionalRegistrars;
 
-
         static IocManager()
         {
             Instance = new IocManager();

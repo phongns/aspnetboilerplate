@@ -1,4 +1,5 @@
 ﻿using Abp.AspNetCore.Mvc.Authorization;
+using Abp.AspNetCore.Mvc.Conventions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +17,7 @@ namespace Abp.AspNetCore.Mvc
 
         private static void AddConventions(MvcOptions options, IServiceCollection services)
         {
-            //options.Conventions.Add(new AbpAppServiceConvention(services));
+            options.Conventions.Add(new AbpAppServiceConvention(services));
         }
 
         private static void AddActionFilters(MvcOptions options)

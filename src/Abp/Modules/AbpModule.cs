@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Abp.Collections.Extensions;
+using Abp.Configuration.Startup;
 using Abp.Dependency;
 
 namespace Abp.Modules
@@ -22,10 +23,11 @@ namespace Abp.Modules
         /// </summary>
         protected internal IIocManager IocManager { get; internal set; }
 
-        ///// <summary>
-        ///// Gets a reference to the ABP configuration.
-        ///// </summary>
-        //protected internal IAbpStartupConfiguration Configuration { get; internal set; }
+        /// <summary>
+        /// Gets a reference to the ABP configuration.
+        /// </summary>
+        protected internal IAbpStartupConfiguration Configuration { get; internal set; }
+
         protected AbpModule()
         {
             //Logger = NullLogger.Instance;
@@ -114,7 +116,7 @@ namespace Abp.Modules
         {
             var list = new List<Type>();
             AddModuleAndDependenciesRecursively(list, moduleType);
-            //list.AddIfNotContains(typeof(AbpKernelModule));
+            list.AddIfNotContains(typeof(AbpKernelModule));
             return list;
         }
 

@@ -10,7 +10,7 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/swagger");
         }
     }
 }

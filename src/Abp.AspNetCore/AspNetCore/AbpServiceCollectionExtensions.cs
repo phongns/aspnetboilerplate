@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Abp.Modules;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace Abp.AspNetCore
 {
@@ -48,6 +49,10 @@ namespace Abp.AspNetCore
 
             //Use DI to create view components
             services.Replace(ServiceDescriptor.Singleton<IViewComponentActivator, ServiceBasedViewComponentActivator>());
+
+            //Add feature providers
+            var partManager = services.GetSingletonServiceOrNull<ApplicationPartManager>();
+            //partManager?.FeatureProviders.Add(new AbpAppServiceControllerFeatureProvider(iocResolver));
 
             ////Configure JSON serializer
             //services.Configure<MvcNewtonsoftJsonOptions>(jsonOptions =>

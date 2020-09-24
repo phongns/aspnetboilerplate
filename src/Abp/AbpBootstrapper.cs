@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using Abp.Authorization;
+using Abp.Configuration.Startup;
 using Abp.Dependency;
 using Abp.Dependency.Installers;
 using Abp.Modules;
+using Abp.Runtime.Validation.Interception;
 using Castle.MicroKernel.Registration;
 using JetBrains.Annotations;
 
@@ -20,6 +22,7 @@ namespace Abp
         /// Get the startup module of the application which depends on other used modules.
         /// </summary>
         public Type StartupModule { get; }
+
         /// <summary>
         /// Gets IIocManager object used by this class.
         /// </summary>
@@ -30,6 +33,7 @@ namespace Abp
         /// </summary>
         protected bool IsDisposed;
 
+        private AbpModuleManager _moduleManager;
         /// <summary>
         /// Creates a new <see cref="AbpBootstrapper"/> instance.
         /// </summary>
@@ -45,7 +49,7 @@ namespace Abp
                 throw new ArgumentException($"{nameof(startupModule)} should be derived from {nameof(AbpModule)}.");
             }
 
-            //StartupModule = startupModule;
+            StartupModule = startupModule;
 
             IocManager = options.IocManager;
             //PlugInSources = options.PlugInSources;
@@ -81,7 +85,7 @@ namespace Abp
 
         private void AddInterceptorRegistrars()
         {
-            //ValidationInterceptorRegistrar.Initialize(IocManager);
+            ValidationInterceptorRegistrar.Initialize(IocManager);
             //AuditingInterceptorRegistrar.Initialize(IocManager);
             //EntityHistoryInterceptorRegistrar.Initialize(IocManager);
             //UnitOfWorkRegistrar.Initialize(IocManager);
@@ -101,11 +105,11 @@ namespace Abp
                 IocManager.IocContainer.Install(new AbpCoreInstaller());
 
                 //    IocManager.Resolve<AbpPlugInManager>().PlugInSources.AddRange(PlugInSources);
-                //    IocManager.Resolve<AbpStartupConfiguration>().Initialize();
+                IocManager.Resolve<AbpStartupConfiguration>().Initialize();
 
-                //    _moduleManager = IocManager.Resolve<AbpModuleManager>();
-                //    _moduleManager.Initialize(StartupModule);
-                //    _moduleManager.StartModules();
+                _moduleManager = IocManager.Resolve<AbpModuleManager>();
+                _moduleManager.Initialize(StartupModule);
+                _moduleManager.StartModules();
             }
             catch (Exception ex)
             {
@@ -136,7 +140,7 @@ namespace Abp
 
             IsDisposed = true;
 
-            //_moduleManager?.ShutdownModules();
+            _moduleManager?.ShutdownModules();
         }
     }
 }

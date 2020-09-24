@@ -2,14 +2,14 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Abp.AspNetCore;
-using Abp.AspNetCore.Mvc.Antiforgery;
 using Abp.Extensions;
+using Abp.ZeroCore.Authorization.Roles;
+using Abp.ZeroCore.Authorization.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using OffShoreAspNetBoilerplate.Web.Core.Configuration;
 
@@ -30,7 +30,7 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //MVC
             services.AddControllersWithViews(
@@ -47,24 +47,26 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
             //    };
             //});
 
+            services.AddIdentity<AbpUser, AbpRole>()
+               .AddDefaultTokenProviders();
             AuthConfigurer.Configure(services, _appConfiguration);
 
-            //// Configure CORS for angular2 UI
-            //services.AddCors(
-            //    options => options.AddPolicy(
-            //        _defaultCorsPolicyName,
-            //        builder => builder.WithOrigins(
-            //        // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
-            //        _appConfiguration["App:CorsOrigins"]
-            //            .Split(",", StringSplitOptions.RemoveEmptyEntries)
-            //            .Select(o => o.RemovePostFix("/"))
-            //            .ToArray()
-            //        )
-            //        .AllowAnyHeader()
-            //        .AllowAnyMethod()
-            //        .AllowCredentials()
-            //    )
-            //);
+            // Configure CORS for angular2 UI
+            services.AddCors(
+                options => options.AddPolicy(
+                    _defaultCorsPolicyName,
+                    builder => builder.WithOrigins(
+                    // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
+                    _appConfiguration["App:CorsOrigins"]
+                        .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                        .Select(o => o.RemovePostFix("/"))
+                        .ToArray()
+                    )
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                )
+            );
 
             // Swagger - Enable this line and the related lines in Configure method to enable swagger UI
             services.AddSwaggerGen(options =>
@@ -79,7 +81,7 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
                     {
                         Name = "OffShoreAspNetBoilerplate",
                         Email = string.Empty,
-                       // Url = new Uri("https://twitter.com/aspboilerplate"),
+                        // Url = new Uri("https://twitter.com/aspboilerplate"),
                     },
                     License = new OpenApiLicense
                     {
@@ -100,12 +102,12 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
             });
 
             // Configure Abp and Dependency Injection
-            //return services.AddAbp<AbpProjectNameWebHostModule>(
-            //    //// Configure Log4Net logging
-            //    //options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
-            //    //    f => f.UseAbpLog4Net().WithConfig("log4net.config")
-            //    //)
-            //);
+            return services.AddAbp<AbpProjectNameWebHostModule>(
+            //// Configure Log4Net logging
+            //options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
+            //    f => f.UseAbpLog4Net().WithConfig("log4net.config")
+            //)
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -115,6 +117,8 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
             //{
             //    app.UseDeveloperExceptionPage();
             //}
+
+            app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
