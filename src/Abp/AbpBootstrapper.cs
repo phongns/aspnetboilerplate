@@ -34,6 +34,7 @@ namespace Abp
         protected bool IsDisposed;
 
         private AbpModuleManager _moduleManager;
+
         /// <summary>
         /// Creates a new <see cref="AbpBootstrapper"/> instance.
         /// </summary>

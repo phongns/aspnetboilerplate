@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Abp.ZeroCore.EntityFrameworkCore\Abp.ZeroCore.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\Abp.Zero\Abp.Zero.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,6 +18,12 @@ namespace Abp.Configuration.Startup
         public IAuthorizationConfiguration Authorization { get; private set; }
 
         /// <summary>
+        /// Gets/sets default connection string used by ORM module.
+        /// It can be name of a connection string in application's config file or can be full connection string.
+        /// </summary>
+        public string DefaultNameOrConnectionString { get; set; }
+
+        /// <summary>
         /// Used to configure modules.
         /// Modules can write extension methods to <see cref="ModuleConfigurations"/> to add module specific configurations.
         /// </summary>
@@ -54,6 +60,11 @@ namespace Abp.Configuration.Startup
 
             //CustomConfigProviders = new List<ICustomConfigProvider>();
             //ServiceReplaceActions = new Dictionary<Type, Action>();
+        }
+
+        public T Get<T>()
+        {
+            return GetOrCreate(typeof(T).FullName, () => IocManager.Resolve<T>());
         }
     }
 }
