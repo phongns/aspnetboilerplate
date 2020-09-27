@@ -1,17 +1,11 @@
-using System;
-using Abp.AspNetCore;
-using Abp.AspNetCore.Mvc.Antiforgery;
 using Abp.ZeroCore.Authorization.Roles;
 using Abp.ZeroCore.Authorization.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OffShoreAspNetBoilerplate.Core.Identity;
-using OffShoreAspNetBoilerplate.Web.Core.Authentication.JwtBearer;
 using OffShoreAspNetBoilerplate.Web.Core.Configuration;
 
 namespace OffShoreAspNetBoilerplate.Web.Startup

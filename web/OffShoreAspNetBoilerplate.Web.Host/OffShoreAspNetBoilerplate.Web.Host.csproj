@@ -4,18 +4,33 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>OffShoreAspNetBoilerplate.Web.Host</AssemblyName>
     <OutputType>Exe</OutputType>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="app.config" />
+    <Content Remove="wwwroot\swagger\ui\index.html" />
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\OffShoreAspNetBoilerplate.Application\OffShoreAspNetBoilerplate.Application.csproj" />
+    <None Include="app.config" />
+    <None Update="wwwroot\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Abp.AspNetCore\Abp.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\Abp.ZeroCore\Abp.ZeroCore.csproj" />
     <ProjectReference Include="..\OffShoreAspNetBoilerplate.Web.Core\OffShoreAspNetBoilerplate.Web.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\swagger\ui\index.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   
 </Project>

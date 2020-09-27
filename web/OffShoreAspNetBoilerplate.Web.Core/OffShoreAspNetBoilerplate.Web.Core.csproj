@@ -7,7 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Abp.AspNetCore\Abp.AspNetCore.csproj" />
     <ProjectReference Include="..\OffShoreAspNetBoilerplate.Application\OffShoreAspNetBoilerplate.Application.csproj" />
-    <ProjectReference Include="..\OffShoreAspNetBoilerplate.Core\OffShoreAspNetBoilerplate.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

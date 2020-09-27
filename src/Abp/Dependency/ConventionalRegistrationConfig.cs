@@ -7,10 +7,10 @@ namespace Abp.Dependency
     /// </summary>
     public class ConventionalRegistrationConfig : DictionaryBasedConfig
     {
-        /// <summary>
-        /// Install all <see cref="IInterceptor"/> implementations automatically or not.
-        /// Default: true.
-        /// </summary>
+        ///// <summary>
+        ///// Install all <see cref="IInterceptor"/> implementations automatically or not.
+        ///// Default: true.
+        ///// </summary>
         public bool InstallInstallers { get; set; }
 
         /// <summary>

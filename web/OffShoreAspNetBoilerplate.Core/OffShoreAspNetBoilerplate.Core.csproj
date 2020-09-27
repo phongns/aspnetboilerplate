@@ -6,7 +6,6 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-
     <UserSecretsId>AbpCompanyName-AbpProjectName-89814FFA-3EE9-4B31-BA17-B7108BE09A8D</UserSecretsId>
   </PropertyGroup>
 

@@ -14,7 +14,7 @@ namespace Abp
     {
         public override void PreInitialize()
         {
-            //IocManager.AddConventionalRegistrar(new BasicConventionalRegistrar());
+            IocManager.AddConventionalRegistrar(new BasicConventionalRegistrar());
 
             //IocManager.Register<IScopedIocResolver, ScopedIocResolver>(DependencyLifeStyle.Transient);
             //IocManager.Register(typeof(IAmbientScopeProvider<>), typeof(DataContextAmbientScopeProvider<>), DependencyLifeStyle.Transient);

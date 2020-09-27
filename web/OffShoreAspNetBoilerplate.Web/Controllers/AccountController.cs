@@ -53,7 +53,7 @@ namespace OffShoreAspNetBoilerplate.Web.Controllers
             //           },
             //           loginResult.Identity
             //       );
-
+            await Task.Delay(0);
             return Json(new { TargetUrl = returnUrl });
         }
 

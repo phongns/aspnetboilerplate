@@ -5,6 +5,7 @@ using Abp.Configuration.Startup;
 using Abp.Modules;
 using Abp.Web;
 using Abp.WebApi.Configuration;
+using Abp.WebApi.Controllers;
 
 namespace Abp.WebApi
 {
@@ -17,7 +18,7 @@ namespace Abp.WebApi
         /// <inheritdoc/>
         public override void PreInitialize()
         {
-            //IocManager.AddConventionalRegistrar(new ApiControllerConventionalRegistrar());
+            IocManager.AddConventionalRegistrar(new ApiControllerConventionalRegistrar());
 
             //IocManager.Register<IDynamicApiControllerBuilder, DynamicApiControllerBuilder>();
             IocManager.Register<IAbpWebApiConfiguration, AbpWebApiConfiguration>();
@@ -35,13 +36,13 @@ namespace Abp.WebApi
 
         public override void PostInitialize()
         {
-            //var httpConfiguration = IocManager.Resolve<IAbpWebApiConfiguration>().HttpConfiguration;
+            var httpConfiguration = IocManager.Resolve<IAbpWebApiConfiguration>().HttpConfiguration;
 
-            //InitializeAspNetServices(httpConfiguration);
-            //InitializeFilters(httpConfiguration);
-            //InitializeFormatters(httpConfiguration);
-            //InitializeRoutes(httpConfiguration);
-            //InitializeModelBinders(httpConfiguration);
+            InitializeAspNetServices(httpConfiguration);
+            InitializeFilters(httpConfiguration);
+            InitializeFormatters(httpConfiguration);
+            InitializeRoutes(httpConfiguration);
+            InitializeModelBinders(httpConfiguration);
 
             //foreach (var controllerInfo in IocManager.Resolve<DynamicApiControllerManager>().GetAll())
             //{
@@ -56,7 +57,7 @@ namespace Abp.WebApi
             //    LogHelper.Logger.DebugFormat("Dynamic web api controller is created for type '{0}' with service name '{1}'.", controllerInfo.ServiceInterfaceType.FullName, controllerInfo.ServiceName);
             //}
 
-            //Configuration.Modules.AbpWebApi().HttpConfiguration.EnsureInitialized();
+            Configuration.Modules.AbpWebApi().HttpConfiguration.EnsureInitialized();
         }
 
         private void InitializeAspNetServices(HttpConfiguration httpConfiguration)
@@ -76,7 +77,7 @@ namespace Abp.WebApi
             //httpConfiguration.Filters.Add(IocManager.Resolve<AbpApiUowFilter>());
             //httpConfiguration.Filters.Add(IocManager.Resolve<AbpApiExceptionFilterAttribute>());
 
-            //httpConfiguration.MessageHandlers.Add(IocManager.Resolve<ResultWrapperHandler>());
+            httpConfiguration.MessageHandlers.Add(IocManager.Resolve<ResultWrapperHandler>());
         }
 
         private static void InitializeFormatters(HttpConfiguration httpConfiguration)
@@ -97,26 +98,26 @@ namespace Abp.WebApi
 
         private static void InitializeRoutes(HttpConfiguration httpConfiguration)
         {
-            ////Dynamic Web APIs
+            //Dynamic Web APIs
 
-            //httpConfiguration.Routes.MapHttpRoute(
-            //    name: "AbpDynamicWebApi",
-            //    routeTemplate: "api/services/{*serviceNameWithAction}"
-            //    );
+            httpConfiguration.Routes.MapHttpRoute(
+                name: "AbpDynamicWebApi",
+                routeTemplate: "api/services/{*serviceNameWithAction}"
+                );
 
-            ////Other routes
+            //Other routes
 
-            //httpConfiguration.Routes.MapHttpRoute(
-            //    name: "AbpCacheController_Clear",
-            //    routeTemplate: "api/AbpCache/Clear",
-            //    defaults: new { controller = "AbpCache", action = "Clear" }
-            //    );
+            httpConfiguration.Routes.MapHttpRoute(
+                name: "AbpCacheController_Clear",
+                routeTemplate: "api/AbpCache/Clear",
+                defaults: new { controller = "AbpCache", action = "Clear" }
+                );
 
-            //httpConfiguration.Routes.MapHttpRoute(
-            //    name: "AbpCacheController_ClearAll",
-            //    routeTemplate: "api/AbpCache/ClearAll",
-            //    defaults: new { controller = "AbpCache", action = "ClearAll" }
-            //    );
+            httpConfiguration.Routes.MapHttpRoute(
+                name: "AbpCacheController_ClearAll",
+                routeTemplate: "api/AbpCache/ClearAll",
+                defaults: new { controller = "AbpCache", action = "ClearAll" }
+                );
         }
 
         private static void InitializeModelBinders(HttpConfiguration httpConfiguration)

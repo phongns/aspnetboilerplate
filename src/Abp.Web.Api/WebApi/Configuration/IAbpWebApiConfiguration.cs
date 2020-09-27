@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Http;
 
 namespace Abp.WebApi.Configuration
 {
@@ -11,5 +12,10 @@ namespace Abp.WebApi.Configuration
         /// List of URLs to ignore on result wrapping.
         /// </summary>
         List<string> ResultWrappingIgnoreUrls { get; }
+
+        /// <summary>
+        /// Gets/sets <see cref="HttpConfiguration"/>.
+        /// </summary>
+        HttpConfiguration HttpConfiguration { get; set; }
     }
 }
