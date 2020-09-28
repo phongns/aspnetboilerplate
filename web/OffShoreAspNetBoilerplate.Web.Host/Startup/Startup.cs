@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OffShoreAspNetBoilerplate.Web.Core.Configuration;
 
@@ -28,8 +29,6 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
             _appConfiguration = env.GetAppConfiguration();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             //MVC
@@ -38,14 +37,14 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
                 {
                     //options.Filters.Add(new AbpAutoValidateAntiforgeryTokenAttribute());
                 }
-            );
-            //.AddNewtonsoftJson(options =>
-            //{
+            )
+            .AddNewtonsoftJson(options =>
+            {
             //    options.SerializerSettings.ContractResolver = new AbpMvcContractResolver(IocManager.Instance)
             //    {
             //        NamingStrategy = new CamelCaseNamingStrategy()
             //    };
-            //});
+            });
 
             services.AddIdentity<AbpUser, AbpRole>()
                .AddDefaultTokenProviders();
@@ -55,16 +54,17 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
             services.AddCors(
                 options => options.AddPolicy(
                     _defaultCorsPolicyName,
-                    builder => builder.WithOrigins(
-                    // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
-                    _appConfiguration["App:CorsOrigins"]
-                        .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                        .Select(o => o.RemovePostFix("/"))
-                        .ToArray()
-                    )
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials()
+                    builder => builder
+                        .WithOrigins(
+                            // App:CorsOrigins in appsettings.json can contain more than one address separated by comma.
+                            _appConfiguration["App:CorsOrigins"]
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(o => o.RemovePostFix("/"))
+                                .ToArray()
+                        )
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials()
                 )
             );
 
@@ -110,16 +110,13 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
             );
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseAbp(options => { options.UseAbpRequestLocalization = false; }); // Initializes ABP framework.
 
             app.UseCors(_defaultCorsPolicyName); // Enable CORS!
 
             app.UseStaticFiles();
-
-            app.UseRouting();
 
             app.UseRouting();
 
@@ -142,7 +139,7 @@ namespace OffShoreAspNetBoilerplate.Web.Host.Startup
                 options.SwaggerEndpoint($"/swagger/{_apiVersion}/swagger.json", $"OffShoreAspNetBoilerplate API {_apiVersion}");
                 options.IndexStream = () => Assembly.GetExecutingAssembly()
                     .GetManifestResourceStream("OffShoreAspNetBoilerplate.Web.Host.wwwroot.swagger.ui.index.html");
-                options.DisplayRequestDuration(); // Controls the display of the request duration (in milliseconds) for "Try it out" requests.  
+                options.DisplayRequestDuration(); // Controls the display of the request duration (in milliseconds) for "Try it out" requests.
             }); // URL: /swagger
         }
     }

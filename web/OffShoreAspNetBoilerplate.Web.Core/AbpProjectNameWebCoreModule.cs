@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Abp.AspNetCore;
+using Abp.AspNetCore.Configuration;
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Microsoft.AspNetCore.Hosting;
@@ -13,9 +14,9 @@ using OffShoreAspNetBoilerplate.Web.Core.Configuration;
 namespace OffShoreAspNetBoilerplate.Web.Core
 {
     [DependsOn(
-         typeof(AbpProjectNameApplicationModule)
+         typeof(AbpProjectNameApplicationModule),
      //typeof(AbpProjectNameEntityFrameworkModule),
-     //typeof(AbpAspNetCoreModule)
+     typeof(AbpAspNetCoreModule)
      //, typeof(AbpAspNetCoreSignalRModule)
      )]
     public class AbpProjectNameWebCoreModule : AbpModule
@@ -31,10 +32,10 @@ namespace OffShoreAspNetBoilerplate.Web.Core
 
         public override void PreInitialize()
         {
-            //Configuration.Modules.AbpAspNetCore()
-            //     .CreateControllersForAppServices(
-            //         typeof(AbpProjectNameApplicationModule).GetAssembly()
-            //     );
+            Configuration.Modules.AbpAspNetCore()
+                 .CreateControllersForAppServices(
+                     typeof(AbpProjectNameApplicationModule).GetAssembly()
+                 );
 
             ConfigureTokenAuth();
         }

@@ -105,19 +105,19 @@ namespace Abp.WebApi
                 routeTemplate: "api/services/{*serviceNameWithAction}"
                 );
 
-            //Other routes
+            ////Other routes
 
-            httpConfiguration.Routes.MapHttpRoute(
-                name: "AbpCacheController_Clear",
-                routeTemplate: "api/AbpCache/Clear",
-                defaults: new { controller = "AbpCache", action = "Clear" }
-                );
+            //httpConfiguration.Routes.MapHttpRoute(
+            //    name: "AbpCacheController_Clear",
+            //    routeTemplate: "api/AbpCache/Clear",
+            //    defaults: new { controller = "AbpCache", action = "Clear" }
+            //    );
 
-            httpConfiguration.Routes.MapHttpRoute(
-                name: "AbpCacheController_ClearAll",
-                routeTemplate: "api/AbpCache/ClearAll",
-                defaults: new { controller = "AbpCache", action = "ClearAll" }
-                );
+            //httpConfiguration.Routes.MapHttpRoute(
+            //    name: "AbpCacheController_ClearAll",
+            //    routeTemplate: "api/AbpCache/ClearAll",
+            //    defaults: new { controller = "AbpCache", action = "ClearAll" }
+            //    );
         }
 
         private static void InitializeModelBinders(HttpConfiguration httpConfiguration)

@@ -6,6 +6,8 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <AssemblyName>OffShoreAspNetBoilerplate.Web.Host</AssemblyName>
     <OutputType>Exe</OutputType>
+    <PackageId>OffShoreAspNetBoilerplate.Web.Host</PackageId>
+    <UserSecretsId>OffShoreAspNetBoilerplate-56C2EF2F-ABD6-4EFC-AAF2-2E81C34E8FB1</UserSecretsId>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
@@ -13,18 +15,24 @@
   <ItemGroup>
     <Content Remove="wwwroot\swagger\ui\index.html" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <None Include="app.config" />
     <None Update="wwwroot\**\*">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Abp.AspNetCore\Abp.AspNetCore.csproj" />
-    <ProjectReference Include="..\..\src\Abp.ZeroCore\Abp.ZeroCore.csproj" />
+    <!--<ProjectReference Include="..\..\src\Abp.AspNetCore\Abp.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\src\Abp.ZeroCore\Abp.ZeroCore.csproj" />-->
     <ProjectReference Include="..\OffShoreAspNetBoilerplate.Web.Core\OffShoreAspNetBoilerplate.Web.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,5 +40,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  
+
 </Project>
